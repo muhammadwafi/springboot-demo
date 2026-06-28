@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: demo.app
+
+  datasource:
+    url: jdbc:oracle:thin:@//localhost:1521/orclpdb
+    username: spring_user
+    password: spring_password
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  jpa:
+    database-platform: org.hibernate.dialect.OracleDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  thymeleaf:
+    cache: false
+
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
+  
+  devtools:
+    restart:
+      additional-exclude:
+        - templates/**
+        - static/**
+
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 1d

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/base}"
+>
+
+<div layout:fragment="content" class="max-w-lg mx-auto w-full my-12">
+
+  <h1 class="text-lg font-medium">Home</h1>
+
+  <div class="mt-4">
+    <span
+      th:if="${currentUser != null}"
+    >Welcome back!</span>
+
+    <span
+      th:if="${currentUser != null}"
+      th:text="${currentUser.email}"
+    ></span>
+  </div>
+
+</div>
+
+</html>

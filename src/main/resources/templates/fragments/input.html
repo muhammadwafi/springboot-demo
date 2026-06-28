@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!-- Reusable Text Input Fragment -->
+<fieldset class="fieldset" th:fragment="textInput(label, fieldName, fieldType, placeholder)">
+  <legend class="fieldset-legend" th:for="${fieldName}" th:text="${label}">Label</legend>
+  <input
+    th:type="${fieldType ?: 'text'}"
+    th:id="${fieldName}"
+    th:field="*{__${fieldName}__}"
+    th:placeholder="${placeholder}"
+    class="input input-sm w-full"
+    th:classappend="${#fields.hasErrors(fieldName)} ? 'input-error border-red-500 focus:ring-red-500' : ''"
+  />
+  <!-- Validation Error Message Block -->
+  <span
+    th:if="${#fields.hasErrors(fieldName)}"
+    th:errors="*{__${fieldName}__}"
+    class="text-error font-medium"
+  >
+    Error
+  </span>
+</fieldset>
+
+</body>
+</html>

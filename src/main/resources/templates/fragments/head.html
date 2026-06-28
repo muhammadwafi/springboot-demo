@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head(title)">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css"/>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
+
+  <!-- fonts -->
+  <link href="https://fonts.cdnfonts.com/css/overused-grotesk" rel="stylesheet">
+
+  <title th:text="${title}">
+    Spring Demo
+  </title>
+
+  <style type="text/tailwindcss">
+      @theme {
+          --font-sans: "Inter Variable", sans-serif;
+      }
+  </style>
+
+</head>
+
+</html>

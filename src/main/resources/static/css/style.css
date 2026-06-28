@@ -1,0 +1,44 @@
+/* inter-latin-wght-normal */
+@font-face {
+    font-family: 'Inter Variable';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url(https://cdn.jsdelivr.net/fontsource/fonts/inter:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+* {
+    letter-spacing: -0.025em;
+}
+
+:root {
+    --color-base-100: oklch(21% 0.006 285.885);
+    --color-base-200: oklch(14% 0.005 285.823);
+    --color-base-300: oklch(27% 0.006 286.033);
+    --color-base-content: oklch(98% 0 0);
+    --color-primary: oklch(58% 0.233 277.117);
+    --color-primary-content: oklch(100% 0 0);
+    --color-secondary: oklch(75% 0.183 55.934);
+    --color-secondary-content: oklch(40% 0.123 38.172);
+    --color-accent: oklch(21% 0.006 285.885);
+    --color-accent-content: oklch(21% 0.006 285.885);
+    --color-neutral: oklch(37% 0.013 285.805);
+    --color-neutral-content: oklch(98% 0 0);
+    --color-info: oklch(62% 0.214 259.815);
+    --color-info-content: oklch(97% 0.014 254.604);
+    --color-success: oklch(72% 0.219 149.579);
+    --color-success-content: oklch(98% 0.014 180.72);
+    --color-warning: oklch(66% 0.179 58.318);
+    --color-warning-content: oklch(98% 0.016 73.684);
+    --color-error: oklch(58% 0.253 17.585);
+    --color-error-content: oklch(96% 0.015 12.422);
+    --radius-selector: 1rem;
+    --radius-field: 0.5rem;
+    --radius-box: 1rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1px;
+    --depth: 1;
+    --noise: 0;
+}

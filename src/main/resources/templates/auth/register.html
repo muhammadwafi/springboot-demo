@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/auth}"
+>
+
+<div layout:fragment="content">
+
+  <h2 class="text-lg font-medium mb-4">Register</h2>
+
+  <form
+    th:action="@{/auth/register}"
+    th:object="${form}"
+    method="post"
+    class="space-y-1"
+  >
+    <div
+      th:replace="~{fragments/input::textInput(
+        label='Username',
+        fieldName='username',
+        placeholder='johndoe',
+        fieldType=null
+      )}"
+    ></div>
+    <div
+      th:replace="~{fragments/input::textInput(
+        label='Email',
+        fieldName='email',
+        placeholder='you@mail.com',
+        fieldType='email'
+      )}"
+    ></div>
+    <div
+      th:replace="~{fragments/input::textInput(
+        label='Password',
+        fieldName='password',
+        placeholder='Insert your password',
+        fieldType='password'
+      )}"
+    ></div>
+
+    <button class="btn btn-primary mt-4 w-full" type="submit">
+      Register
+    </button>
+
+  </form>
+
+  <p class="text-sm mt-8 text-center">
+    Already have an account?
+    <a class="text-primary hover:underline" th:href="@{/auth/login}">
+      Login
+    </a>
+  </p>
+
+</div>
+
+</html>

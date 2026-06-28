@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  data-theme="slant"
+>
+
+<head th:replace="~{fragments/head :: head('Authentication')}">
+</head>
+
+<body>
+
+<div class="min-h-screen flex flex-col gap-4 items-center justify-center bg-base-200">
+
+  <a class="text-center tracking-tight font-medium" href="/">Spring</a>
+
+  <div class="card w-96 bg-base-100 shadow-md">
+    <div class="card-body">
+      <main layout:fragment="content"/>
+    </div>
+  </div>
+
+</div>
+
+<th:block th:replace="~{fragments/scripts :: scripts}"/>
+
+</body>
+
+</html>
