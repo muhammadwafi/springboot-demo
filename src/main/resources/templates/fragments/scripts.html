@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <body>
 
 <th:block th:fragment="scripts">
+  <!-- Global Scripts can live here (e.g., jQuery CDN) -->
+  <script
+    src="https://code.jquery.com/jquery-4.0.0.min.js"
+    integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao="
+    crossorigin="anonymous"></script>
 
+  <!-- This opens a slot where child layout pages can append their code -->
+  <th:block layout:fragment="page-scripts"/>
 </th:block>
 
 </body>

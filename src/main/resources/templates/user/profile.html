@@ -5,52 +5,56 @@
   layout:decorate="~{layouts/base}"
 >
 
-<section layout:fragment="content">
-  <div class="mx-auto mt-8 max-w-2xl">
-    <div class="card bg-base-200 shadow">
-      <div class="card-body">
-        <h2 class="card-title">Profile</h2>
+<section layout:fragment="content" class="max-w-lg mx-auto w-full my-12">
+  <div
+    class="card bg-zinc-800 p-0.5 rounded-2xl shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.15),0_0_1px_0_rgba(255,255,255,0.1)]">
+    <div class="px-5 py-3">
+      <h2 class="card-title text-base">
+        Profile
+      </h2>
+      <p class="text-xs text-zinc-400">Update profile</p>
+    </div>
+    <div class="card-body pt-5 px-5 pb-6 bg-base-200 rounded-[calc(var(--radius-2xl)-2px)]">
 
-        <form
-          th:action="@{/profile}"
-          th:object="${form}"
-          method="post"
-          class="space-y-4"
-        >
-          <div
-            th:replace="~{fragments/input::textInput(
+      <form
+        th:action="@{/profile}"
+        th:object="${form}"
+        method="post"
+        class="space-y-2"
+      >
+        <div
+          th:replace="~{fragments/input::textInput(
             label='Fullname',
             fieldName='fullName',
             placeholder='Enter your full name',
             fieldType='text'
           )}"></div>
 
-          <div
-            th:replace="~{fragments/input::textInput(
+        <div
+          th:replace="~{fragments/input::textInput(
               label='Username',
               fieldName='username',
               placeholder='Enter username',
               fieldType='text'
             )}"
-          ></div>
+        ></div>
 
-          <div
-            th:replace="~{fragments/input :: textInput(
+        <div
+          th:replace="~{fragments/input :: textInput(
               label='Email',
               fieldName='email',
               placeholder='Enter email',
               fieldType='email'
             )}"
-          ></div>
+        ></div>
 
-          <div class="flex justify-end">
-            <button type="submit" class="btn btn-primary">
-              Save Changes
-            </button>
-          </div>
+        <div class="flex justify-end mt-8">
+          <button type="submit" class="btn btn-primary">
+            Save Changes
+          </button>
+        </div>
 
-        </form>
-      </div>
+      </form>
     </div>
   </div>
 </section>

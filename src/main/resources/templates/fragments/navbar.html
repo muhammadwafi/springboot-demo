@@ -8,6 +8,12 @@
     </a>
   </div>
 
+  <div class="navbar-center">
+    <ul class="menu menu-horizontal px-1 [&_a]:opacity-70 [&_a]:hover:opacity-100">
+      <li><a href="/weather" class="">Weather</a></li>
+    </ul>
+  </div>
+
   <div class="navbar-end gap-2">
     <th:block th:if="${currentUser != null}">
       <div class="dropdown dropdown-end">
@@ -18,7 +24,7 @@
 
           <div class="text-right">
             <div
-              class="text-xs font-normal opacity-70"
+              class="text-xs font-normal"
               th:text="${currentUser.email}">
               john@example.com
             </div>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/base}"
+>
+
+<section layout:fragment="content" class="max-w-lg mx-auto w-full my-12">
+
+  <div
+    class="card bg-zinc-800 shadow-[inset_0_1px_1px_0_rgba(255,255,255,0.15),0_0_1px_0_rgba(255,255,255,0.1)] p-0.5 rounded-2xl">
+
+    <div class="px-4 py-3">
+      <h2 class="card-title text-base">
+        Current Weather
+      </h2>
+    </div>
+
+    <div class="card-body pt-4 px-4 pb-6 bg-base-200 rounded-[calc(var(--radius-2xl)-2px)]">
+
+      <div class="w-full">
+        <select id="city" class="select select-bordered w-full">
+          <option
+            th:each="city : ${cities}"
+            th:value="${city.slug}"
+            th:text="${city.label}"
+            th:selected="${city == selectedCity}">
+          </option>
+        </select>
+      </div>
+
+      <!-- The Parent Container with fixed min-height to prevent layout shifting -->
+      <div class="text-center py-16 min-h-[280px] flex flex-col justify-center items-center">
+
+        <!-- 1. Spinner Component (Visible by default on initial load) -->
+        <div id="weatherSpinner" class="flex flex-col items-center gap-2">
+          <span class="loading loading-spinner loading-lg text-white"></span>
+          <span class="text-xs text-zinc-400">Fetching local data...</span>
+        </div>
+
+        <!-- 2. Data Block (Hidden with 'hidden' class initially) -->
+        <div id="weatherData" class="hidden grid justify-center gap-1 w-full animate-fade-in">
+          <div class="flex justify-center items-start">
+            <div class="text-7xl tracking-tighter font-medium" id="temperature">0</div>
+            <div class="text-2xl relative">°C</div>
+          </div>
+          <div id="weatherDesc" class="text-base">Loading</div>
+          <div
+            class="text-xs w-fit mx-auto flex gap-1 items-center justify-center text-zinc-400 mt-2 bg-zinc-800 rounded-full h-6 px-2">
+            Humidity <span id="humidity">0%</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<th:block layout:fragment="page-scripts">
+
+  <script>
+      function getWmoWeatherDescription(code) {
+          const wmoCode = Number(code);
+          switch (wmoCode) {
+              case 0:
+                  return "Clear sky";
+              case 1:
+                  return "Mainly clear";
+              case 2:
+                  return "Partially cloudy";
+              case 3:
+                  return "Partly cloudy";
+              case 45:
+                  return "Fog";
+              case 48:
+                  return "Depositing rime fog";
+              case 51:
+                  return "Light drizzle";
+              case 53:
+                  return "Moderate drizzle";
+              case 55:
+                  return "Dense drizzle";
+              case 61:
+                  return "Slight rain";
+              case 63:
+                  return "Moderate rain";
+              case 65:
+                  return "Heavy rain";
+              case 71:
+                  return "Slight snow fall";
+              case 73:
+                  return "Moderate snow fall";
+              case 75:
+                  return "Heavy snow fall";
+              case 77:
+                  return "Snow grains";
+              case 80:
+                  return "Slight rain showers";
+              case 81:
+                  return "Moderate rain showers";
+              case 82:
+                  return "Violent rain showers";
+              case 85:
+                  return "Slight snow showers";
+              case 86:
+                  return "Heavy snow showers";
+              case 95:
+                  return "Thunderstorm";
+              default:
+                  return `Unknown Weather (${code})`;
+          }
+      }
+
+      function loadWeather(city) {
+          // Show the spinner, hide old data layout
+          $("#weatherSpinner").removeClass("hidden");
+          $("#weatherData").addClass("hidden");
+
+          $.get("/api/weather", {city}, function (weather) {
+              $("#temperature").text(weather.current.temperature);
+              $("#humidity").text(`${weather.current.humidity}%`);
+
+              const description = getWmoWeatherDescription(weather.current.weatherCode);
+              $("#weatherDesc").text(description);
+          })
+              .always(function () {
+                  // Hide the spinner and show the new data layout when complete (success or error)
+                  $("#weatherSpinner").addClass("hidden");
+                  $("#weatherData").removeClass("hidden");
+              });
+      }
+
+      const selectedCity = $("#city").val();
+      loadWeather(selectedCity);
+
+      $("#city").on("change", function () {
+          const city = $(this).val();
+          history.replaceState({}, "", "?city=" + city);
+          loadWeather(city);
+      });
+  </script>
+
+</th:block>
+
+</html>
